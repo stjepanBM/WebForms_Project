@@ -1,0 +1,146 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Glavni.master.cs" Inherits="WebForms.Glavni" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <link href="Content/bootstrap.css" rel="stylesheet" />  
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script> 
+    <link href="Content/MojCss.css" rel="stylesheet" />
+    <link href="Content/OsobaCtrl.css" rel="stylesheet" />
+    <link href="Content/toastr.css" rel="stylesheet" />
+    <script src="Scripts/toastr.js"></script>
+    <script src="Scripts/bootbox.min.js"></script>
+    <title><%: Page.Title  %></title>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <script>
+        function Toastr(type, message) { 
+            toastr[type](message);
+            
+        }
+        function confirmDelete(sender,message) {
+            if (sender.dataset.deleteconfirmed=='true') 
+                return true;
+
+            bootbox.confirm(message, function (confirmed) {
+                if (confirmed) {
+                    sender.setAttribute('data-deleteconfirmed', confirmed);
+                    sender.click();
+                }
+            });
+            return false;   
+        }
+            document.addEventListener('DOMContentLoaded', () => {
+            var pathname = window.location.pathname; // Returns path only
+            var url = window.location.href;     // Returns full URL
+            var indexOfSlash = pathname.lastIndexOf('/');
+            var indexTocka = pathname.lastIndexOf('.');
+
+            var currentPageName = pathname.substring(++indexOfSlash, indexTocka);
+            console.log(currentPageName);
+
+            var btnClassDefault1 = "btn";
+            var btnClassDefault2 = "btn-default";
+            var btnClassClicked = "btn-primary";
+
+            var linkovi = document.querySelectorAll("a[id^=lb]");
+
+            linkovi.forEach((link, index, kolekcija) => {
+                link.setAttribute('style', 'width:160px');
+                link.classList.add(btnClassDefault1);
+                link.classList.add(btnClassDefault2);
+            })
+
+            switch (currentPageName) {
+                case "DodavanjeOsoba":
+                    document.querySelector('#lb1').classList.add(btnClassClicked);
+                    break;
+                case "AzuriranjeOsoba":
+                    document.querySelector('#lb2').classList.add(btnClassClicked);
+                    break
+                case "PrikazOsoba":
+                    document.querySelector('#lb3').classList.add(btnClassClicked);
+                    break;
+                case "Postavke":
+                    document.querySelector('#lb4').classList.add(btnClassClicked);
+                    break;
+            }
+        })
+    </script>
+    <style>
+        body{
+            background-color:#efefef;
+             font-family: 'Segoe UI';
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="mainform" runat="server">
+        <div class="container  mainContainer">
+            <header>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 header  text-left" style="left: 0px; top: 0px">
+                        <span id="lbTitle" style="font-weight: 100;" class="title">
+                            <asp:ContentPlaceHolder runat="server" ID="HeaderTextContent"></asp:ContentPlaceHolder>
+                        </span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-right" style="padding-top: 5px;">
+                        <asp:LinkButton ID="btnMailUser" Visible="False" OnClick="btnMailUser_Click" class="btn btn-sm btn-success" runat="server" meta:resourcekey="btnMailUserResource1"></asp:LinkButton>
+
+                        <asp:Button ID="btnLogout" Visible="False" runat="server" OnClick="btnLogout_Click1" CssClass="btn btn-sm btn-warning" Text="Odjava" ValidationGroup="Logout" meta:resourcekey="btnLogoutResource1"></asp:Button>
+
+                    </div>
+                </div>
+                <hr style="margin-top: 3px;" />
+
+                <nav>
+                    <ul>
+                        <li>
+                            <asp:LinkButton ID="lb1" class="btn btn-default " PostBackUrl="~/DodavanjeOsoba.aspx" Style="width: 160px;" runat="server" meta:resourcekey="lb1Resource1">
+                        <span class="glyphicon glyphicon glyphicon-cog"></span>
+                        Dodavanje osoba</asp:LinkButton></li>
+                        <li>
+                            <asp:LinkButton ID="lb2" class="btn btn-default " PostBackUrl="~/AzuriranjeOsoba.aspx" Style="width: 160px;" runat="server" meta:resourcekey="lb2Resource1" >
+                        <span class="glyphicon glyphicon glyphicon-share "></span>
+                        Ažuriranje osoba</asp:LinkButton></li>
+                        <li>
+                            <asp:LinkButton ID="lb3" class="btn btn-default " PostBackUrl="~/PrikazOsoba.aspx" Style="width: 160px;" runat="server" meta:resourcekey="lb3Resource1">
+                        <span class="glyphicon glyphicon glyphicon-th-list"></span>
+                        Prikaz osoba
+                            </asp:LinkButton></li>
+                        <li>
+                            <asp:LinkButton ID="lb4" PostBackUrl="~/Postavke.aspx" Class="btn btn-default" Style="width: 160px;" runat="server" meta:resourcekey="lb4Resource1"> 
+                        <span class="glyphicon glyphicon glyphicon-cog"></span>
+                        Postavke
+                            </asp:LinkButton></li>
+                    </ul>
+                </nav>
+                <hr />
+            </header>
+            <div class="content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <hr />
+            <div style="clear: both;"></div>
+            <footer>
+                <div>
+                    <p>
+                        <span id="lblAppName">
+                            <%: DateTime.Now.ToLongDateString() %> | RWA - <span style="color: red;">WebForms </span>- Project
+                        </span>
+
+                    </p>
+                    <p class="badge">
+                        <asp:Label ID="lblRepoInfo" runat="server" meta:resourcekey="lblRepoInfoResource1"></asp:Label>
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>

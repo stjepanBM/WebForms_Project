@@ -1,0 +1,2 @@
+1;ADMIN;ADMIN;admin@email.com;;;4564564;Administrator;Split;123
+2;Stjepan;Matic;stjepan@email.com;matic@matic.ic;;4564564;Korisnik;Zagreb;zg123

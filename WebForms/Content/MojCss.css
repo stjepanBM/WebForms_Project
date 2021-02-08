@@ -1,0 +1,121 @@
+﻿body {
+    font-family: 'Segoe UI';
+    background-color: #efefef;
+}
+
+.formContainer {
+    margin: auto;
+    padding: 20px;
+    width: 400px;
+}
+
+tr > th {
+    background-color: #333;
+    color: white;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+th {
+    padding: 5px;
+}
+.mainContainer {
+    min-height: 300px;
+    margin: 30px auto 0;
+    border: 0px solid #ccc;
+    overflow: hidden;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.header {
+    text-align: left;
+    position: relative;
+    min-height: 1px;
+}
+
+.title { 
+    color: #000;
+    display: block;
+    font-size: 2em;
+    font-weight: 100;
+    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+
+.Login {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+
+nav ul {
+    text-align: center;
+}
+
+    nav ul li {
+        list-style: none;
+        margin: 5px 20px;
+        display: inline-block;
+    }
+
+
+footer {
+    text-align: center;
+}
+
+select {
+    width: 120px;
+}
+
+.btnCtrl {
+    width: 85px;
+}
+
+.tblPrikazOsoba tr:not(:first-child) {
+    height: 80px;
+}
+
+.urediOsobu {
+    text-align: center;
+    margin: auto;
+    overflow: hidden;
+}
+
+#gvUseri {
+    width: 100%;
+}
+
+    #gvUseri tr:not(:first-child) td:first-child {
+        font-weight: normal;
+    }
+
+    #gvUseri tr:first-child {
+        height: 30px;
+    }
+
+.panel-group {
+    margin-bottom: 20px;
+}
+
+#gvUseri input,
+#gvUseri select {
+    width: 120px;
+    padding: 3px;
+    border: 1px solid #ccc;
+}
+
+#divGrid {
+    margin-bottom: 5px;
+}
+
+.tblUseri {
+    margin: auto;
+    width: 100%;
+} 
